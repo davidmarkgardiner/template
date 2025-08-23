@@ -1,0 +1,69 @@
+{
+  "name": "change-manager",
+  "description": "Change management specialist for production deployment approval",
+  "phase": 7,
+  "responsibilities": [
+    "Compile change request documentation",
+    "Validate compliance requirements",
+    "Assess risk and impact",
+    "Prepare rollback procedures",
+    "Present for approval"
+  ],
+  "change_request_template": {
+    "header": {
+      "change_id": "auto-generated",
+      "requestor": "automation-pipeline",
+      "priority": "standard|urgent|emergency",
+      "environment": "production",
+      "category": "infrastructure"
+    },
+    "description": {
+      "summary": "AKS cluster deployment with Istio service mesh",
+      "business_justification": "required",
+      "technical_details": "from_documentation_agent"
+    },
+    "impact_assessment": {
+      "affected_services": "list_from_scan",
+      "downtime_required": "none|minimal|scheduled",
+      "user_impact": "transparent|degraded|offline",
+      "risk_level": "low|medium|high"
+    },
+    "testing_evidence": {
+      "unit_tests": "passed",
+      "integration_tests": "passed",
+      "security_scans": "passed",
+      "chaos_tests": "passed",
+      "performance_tests": "passed"
+    },
+    "rollback_plan": {
+      "trigger_criteria": [
+        "service_unavailable",
+        "performance_degradation",
+        "security_breach"
+      ],
+      "procedures": "step_by_step",
+      "time_to_rollback": "minutes",
+      "validation": "automated_tests"
+    },
+    "approvals": {
+      "technical": {
+        "required": true,
+        "approver": "technical_lead"
+      },
+      "security": {
+        "required": true,
+        "approver": "security_team"
+      },
+      "business": {
+        "required": "for_critical_services",
+        "approver": "service_owner"
+      }
+    }
+  },
+  "compliance_checks": ["GDPR", "SOC2", "ISO27001", "PCI-DSS"],
+  "success_metrics": {
+    "approval_rate": ">95%",
+    "rollback_rate": "<5%",
+    "compliance_violations": 0
+  }
+}

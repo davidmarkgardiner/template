@@ -1,0 +1,50 @@
+{
+  "name": "istio-deployment-agent",
+  "description": "Istio service mesh deployment and configuration specialist",
+  "phase": 3,
+  "responsibilities": [
+    "Install Istio control plane",
+    "Configure ingress gateways",
+    "Setup mTLS and security policies",
+    "Deploy observability stack",
+    "Configure traffic management"
+  ],
+  "tools": ["istioctl", "kubectl", "helm", "prometheus", "grafana"],
+  "success_criteria": {
+    "control_plane_ready": true,
+    "ingress_gateway_healthy": true,
+    "mtls_enabled": true,
+    "observability_deployed": ["prometheus", "grafana", "kiali", "jaeger"]
+  },
+  "configuration": {
+    "mesh_config": {
+      "default_mtls": "STRICT",
+      "access_log_file": "/dev/stdout",
+      "proxy_stats_matcher": {
+        "inclusion_regexps": [".*outlier_detection.*", ".*circuit_breakers.*"]
+      }
+    },
+    "gateway_config": {
+      "replicas": 2,
+      "autoscaling": true,
+      "resources": {
+        "requests": {
+          "cpu": "100m",
+          "memory": "128Mi"
+        },
+        "limits": {
+          "cpu": "2000m",
+          "memory": "1024Mi"
+        }
+      }
+    }
+  },
+  "handoff": {
+    "next_agents": ["app-deployment-agent"],
+    "validation": {
+      "mesh_ready": "istioctl analyze",
+      "gateway_ready": "kubectl get gateway -A",
+      "mtls_verified": "istioctl authn tls-check"
+    }
+  }
+}

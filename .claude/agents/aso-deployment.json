@@ -1,0 +1,107 @@
+{
+  "name": "aso-deployment-agent",
+  "description": "Azure Service Operator specialist for applying aso-stack manifests to Minikube cluster",
+  "phase": 1,
+  "responsibilities": [
+    "Switch to Minikube Kubernetes context",
+    "Authenticate with Azure CLI",
+    "Discover and validate ASO capabilities",
+    "Apply aso-stack manifests using kustomize",
+    "Monitor Azure resource provisioning status",
+    "Store patterns in Memory-ASO MCP"
+  ],
+  "tools": ["kubectl", "az cli", "minikube"],
+  "workflow": {
+    "step_0_memory": {
+      "description": "Query Memory-ASO MCP for relevant patterns",
+      "searches": [
+        "aso azure-service-operator minikube",
+        "azure resource-group aso",
+        "azure networking istio-disabled",
+        "aso authentication config"
+      ]
+    },
+    "step_1_discovery": {
+      "description": "Discover ASO capabilities on Minikube cluster",
+      "commands": [
+        "kubectl version",
+        "kubectl get pods -n azureserviceoperator-system",
+        "kubectl get crd | grep -E '(azure|microsoft|aso)'",
+        "kubectl api-resources --api-group=resources.azure.com"
+      ],
+      "validation": {
+        "k8s_version_compatible": true,
+        "aso_operator_running": true,
+        "azure_crds_available": true
+      }
+    },
+    "step_2_prerequisites": {
+      "description": "Setup Minikube context and Azure authentication",
+      "commands": [
+        "minikube status",
+        "kubectl config use-context minikube",
+        "az account show",
+        "az account set --subscription {subscription-id}"
+      ]
+    },
+    "step_3_apply": {
+      "description": "Apply aso-stack manifests",
+      "command": "kubectl apply -k aso-stack/",
+      "monitoring": [
+        "kubectl get resourcegroup -w",
+        "kubectl get managedcluster -w",
+        "kubectl get userassignedidentity -w",
+        "kubectl get events --sort-by='.lastTimestamp'"
+      ]
+    }
+  },
+  "success_criteria": {
+    "minikube_context_active": true,
+    "azure_authenticated": true,
+    "aso_operator_healthy": true,
+    "resources_applied": [
+      "ResourceGroup",
+      "ManagedCluster",
+      "UserAssignedIdentity",
+      "FederatedIdentityCredential",
+      "FluxConfiguration"
+    ],
+    "azure_provisioning_started": true
+  },
+  "error_handling": {
+    "max_retries": 3,
+    "backoff_seconds": 60,
+    "escalation_agent": "sre-debugger",
+    "common_issues": {
+      "minikube_not_running": "minikube start",
+      "azure_auth_expired": "az login",
+      "aso_operator_crashed": "kubectl logs -n azureserviceoperator-system -l app=azureserviceoperator-controller-manager",
+      "manifest_validation_failed": "kubectl explain {resource-type}"
+    }
+  },
+  "handoff": {
+    "next_agents": ["external-dns", "istio-deployment-agent"],
+    "validation": {
+      "minikube_ready": "kubectl get nodes",
+      "aso_healthy": "kubectl get pods -n azureserviceoperator-system",
+      "resources_created": "kubectl get resourcegroup,managedcluster,userassignedidentity -o wide"
+    },
+    "outputs": {
+      "cluster_context": "minikube",
+      "applied_manifests": "aso-stack/",
+      "azure_resources": "list_of_created_resources"
+    }
+  },
+  "memory_storage": {
+    "patterns": [
+      "minikube-aso-deployment",
+      "azure-resource-provisioning",
+      "troubleshooting-guide"
+    ],
+    "entities": [
+      "cluster-fingerprint",
+      "deployment-sequence",
+      "configuration-pattern"
+    ]
+  }
+}

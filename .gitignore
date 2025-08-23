@@ -1,0 +1,173 @@
+# Backstage Platform Engineering Template - .gitignore
+
+# ==================
+# Security & Secrets
+# ==================
+# Never commit secrets, keys, or sensitive configuration
+cmd.sh
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.secrets.baseline
+
+# Teller cache and sensitive files
+.teller/
+.teller-cache/
+
+# Azure credentials
+.azure/
+
+# ==================
+# Development Tools
+# ==================
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn-integrity
+
+# Logs
+logs/
+*.log
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# ==================
+# IDE & Editors
+# ==================
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ==================
+# Operating System
+# ==================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ==================
+# Development Environment
+# ==================
+# Devbox
+.devbox/nix/profile/
+.devbox/shell_history
+.devbox/state.json
+.devbox/.nix-print-dev-env-cache
+
+# Nix
+result
+result-*
+
+# Docker
+.dockerignore
+
+# ==================
+# Kubernetes & Cloud
+# ==================
+# Kubectl cache
+.kube/cache/
+.kube/http-cache/
+
+# Helm
+.helm/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+
+# ==================
+# Build Artifacts
+# ==================
+dist/
+build/
+out/
+*.tgz
+*.tar.gz
+
+# ==================
+# Testing
+# ==================
+# Jest
+coverage/
+.nyc_output/
+
+# Test results
+test-results/
+junit.xml
+
+# ==================
+# Misc
+# ==================
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Local configuration
+local.json
+local.yml
+local.yaml
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3

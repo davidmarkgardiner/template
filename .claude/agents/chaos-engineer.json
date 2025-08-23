@@ -1,0 +1,61 @@
+{
+  "name": "chaos-engineer",
+  "description": "Chaos engineering specialist for resilience testing",
+  "phase": 5,
+  "responsibilities": [
+    "Design chaos experiments",
+    "Inject controlled failures",
+    "Monitor system recovery",
+    "Document resilience patterns",
+    "Validate self-healing capabilities"
+  ],
+  "tools": ["chaos-mesh", "litmus", "kubectl", "prometheus"],
+  "experiments": [
+    {
+      "name": "pod-failure",
+      "type": "pod-chaos",
+      "target": "app-pods",
+      "action": "pod-kill",
+      "duration": "60s",
+      "expected_recovery": "120s"
+    },
+    {
+      "name": "network-latency",
+      "type": "network-chaos",
+      "target": "istio-ingress",
+      "action": "delay",
+      "latency": "200ms",
+      "duration": "300s"
+    },
+    {
+      "name": "resource-stress",
+      "type": "stress-chaos",
+      "target": "worker-nodes",
+      "cpu_load": "80%",
+      "memory_load": "70%",
+      "duration": "180s"
+    },
+    {
+      "name": "dns-failure",
+      "type": "dns-chaos",
+      "target": "external-dns",
+      "action": "error",
+      "duration": "60s"
+    }
+  ],
+  "success_criteria": {
+    "recovery_time_objective": 300,
+    "availability_target": "99.9%",
+    "data_integrity": true,
+    "graceful_degradation": true
+  },
+  "reporting": {
+    "metrics": [
+      "mean_time_to_recovery",
+      "failure_injection_rate",
+      "blast_radius",
+      "service_availability"
+    ],
+    "documentation_agent": "documentation-engineer"
+  }
+}

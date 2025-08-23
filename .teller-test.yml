@@ -1,0 +1,25 @@
+# Test Teller Configuration
+project: test-project
+
+providers:
+  # Environment variable provider for testing
+  env:
+    kind: dotenv
+    maps:
+      - id: env
+        path: .env
+
+# Test secrets from environment variables
+secrets:
+  env:
+    TEST_SECRET:
+      provider: env
+      path: HOME
+    USER_NAME:
+      provider: env
+      path: USER
+
+opts:
+  stage: development
+  sync: false
+  redact: true
