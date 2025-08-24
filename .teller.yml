@@ -20,3 +20,8 @@ providers:
           docker-registry-username: DOCKER_USERNAME
           docker-registry-password: DOCKER_PASSWORD
           brave-api-key: BRAVE_API_KEY
+          firecrawl-api: FIRECRAWL_API_KEY
+          azure-subscription-id: AZURE_SUBSCRIPTION_ID
+          azure-tenant-id: AZURE_TENANT_ID
+          azure-client-id-contributor: AZURE_CLIENT_ID_CONTRIBUTOR
+          azure-client-secret-contributor: AZURE_CLIENT_SECRET_CONTRIBUTOR

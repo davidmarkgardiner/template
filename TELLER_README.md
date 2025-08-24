@@ -100,6 +100,12 @@ echo -n "" | gcloud secrets create elevenlabs-api-key --data-file=-
 # Docker registry credentials
 echo -n "" | gcloud secrets create docker-registry-username --data-file=-
 echo -n "" | gcloud secrets create docker-registry-password --data-file=-
+
+echo -n "" | gcloud secrets create azure-subscription-id --data-file=-
+echo -n "" | gcloud secrets create azure-tenant-id --data-file=-
+echo -n "" | gcloud secrets create azure-client-id-contributor --data-file=-
+echo -n "" | gcloud secrets create azure-client-secret-contributor --data-file=-
+
 ```
 
 ### Using Google Cloud Console
