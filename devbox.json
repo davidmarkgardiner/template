@@ -15,9 +15,23 @@
     "teller@2.0.7"
   ],
   "shell": {
-    "scripts": {}
+    "init_hook": [
+      "echo '🔐 Loading secrets with Teller...'",
+      "if command -v teller >/dev/null 2>&1; then",
+      "  eval $(teller env 2>/dev/null || echo 'echo \"⚠️  Teller configuration issue - check .teller.yml\"')",
+      "  echo '✅ Secrets loaded successfully'",
+      "else",
+      "  echo '❌ Teller not available'",
+      "fi"
+    ],
+    "scripts": {
+      "load-secrets": "eval $(teller env)",
+      "show-secrets": "teller env",
+      "test-secrets": "echo \"Docker User: $DOCKER_USERNAME\" && echo \"ElevenLabs: ${ELEVENLABS_API_KEY:0:10}...\" && echo \"Brave: ${BRAVE_API_KEY:0:10}...\""
+    }
   },
   "env": {
-    "AZURE_EXTENSION_USE_DYNAMIC_INSTALL": "no"
+    "AZURE_EXTENSION_USE_DYNAMIC_INSTALL": "no",
+    "TELLER_CONFIG": ".teller.yml"
   }
 }
