@@ -25,3 +25,5 @@ providers:
           azure-tenant-id: AZURE_TENANT_ID
           azure-client-id-contributor: AZURE_CLIENT_ID_CONTRIBUTOR
           azure-client-secret-contributor: AZURE_CLIENT_SECRET_CONTRIBUTOR
+          openai-api-key: OPENAI_API_KEY
+          anthropic-api-key: ANTHROPIC_API_KEY
