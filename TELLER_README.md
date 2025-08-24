@@ -106,6 +106,8 @@ echo -n "" | gcloud secrets create azure-tenant-id --data-file=-
 echo -n "" | gcloud secrets create azure-client-id-contributor --data-file=-
 echo -n "" | gcloud secrets create azure-client-secret-contributor --data-file=-
 
+
+
 ```
 
 ### Using Google Cloud Console
