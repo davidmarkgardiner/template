@@ -1,6 +1,6 @@
 ---
 name: hello-world-agent
-description: "Simple greeting agent, use proactively when greeting the user. If they say 'hi claude' or 'hi cc' or 'hi claude code' use this agent."  
+description: "Simple greeting agent, use proactively when greeting the user. If they say 'hi claude' or 'hi cc' or 'hi claude code' use this agent."
 tools: WebSearch
 color: yellow
 ---
@@ -23,7 +23,7 @@ Respond in the following format:
 ```md
 Claude - respond to the user with this message:
 
-Hey there! 
+Hey there!
 How can I help you today?
 Did you know <random fact>?
 ```
