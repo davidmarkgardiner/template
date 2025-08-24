@@ -2,95 +2,21 @@
 # Secure secrets management for local development
 # This file defines how secrets are fetched from Google Cloud Secret Manager
 
-project: backstage-platform
+project: 240676728422
 
 # Default configuration for all environments
 defaults:
-  confirm: true
+  confirm: false
   carry_env: true
 
 providers:
-  # Google Cloud Secret Manager provider
   google_secretmanager:
     kind: google_secretmanager
     maps:
-      - id: dev
-        path: ""
-
-# Environment-specific secrets from Google Cloud Secret Manager
-secrets:
-  env:
-    # Database credentials
-    DB_USERNAME:
-      provider: google_secretmanager
-      path: platform-database-username
-      field: latest
-    DB_PASSWORD:
-      provider: google_secretmanager
-      path: platform-database-password
-      field: latest
-    DB_HOST:
-      provider: google_secretmanager
-      path: platform-database-host
-      field: latest
-
-    # JWT secrets for authentication
-    JWT_SECRET:
-      provider: google_secretmanager
-      path: platform-jwt-secret
-      field: latest
-    JWT_REFRESH_SECRET:
-      provider: google_secretmanager
-      path: platform-jwt-refresh-secret
-      field: latest
-
-    # External service API keys
-    EXTERNAL_API_KEY:
-      provider: google_secretmanager
-      path: platform-external-api-key
-      field: latest
-
-    # ElevenLabs API key for MCP
-    ELEVENLABS_API_KEY:
-      provider: google_secretmanager
-      path: elevenlabs-api-key
-      field: latest
-
-    # Docker registry credentials
-    DOCKER_USERNAME:
-      provider: google_secretmanager
-      path: docker-registry-username
-      field: latest
-    DOCKER_PASSWORD:
-      provider: google_secretmanager
-      path: docker-registry-password
-      field: latest
-
-# Environment-specific overrides
-environments:
-  development:
-    providers:
-      google_secretmanager:
-        env:
-          GOOGLE_CLOUD_PROJECT: "backstage-platform-dev"
-
-  staging:
-    providers:
-      google_secretmanager:
-        env:
-          GOOGLE_CLOUD_PROJECT: "backstage-platform-staging"
-
-  production:
-    providers:
-      google_secretmanager:
-        env:
-          GOOGLE_CLOUD_PROJECT: "backstage-platform-prod"
-
-# Security configuration
-opts:
-  stage: development
-  sync: false
-  redact: true
-  logging:
-    level: info
-    format: json
+      - id: secrets
+        path: projects/240676728422
+        keys:
+          elevenlabs-api-key: ELEVENLABS_API_KEY
+          docker-registry-username: DOCKER_USERNAME
+          docker-registry-password: DOCKER_PASSWORD
+          brave-api-key: BRAVE_API_KEY
