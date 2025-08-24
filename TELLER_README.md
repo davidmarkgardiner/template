@@ -34,8 +34,8 @@ Teller is a multi-provider secret management tool that allows you to securely fe
    gcloud projects list
 
    # Set your project (replace with your actual project ID)
-   gcloud config set project YOUR_PROJECT_ID
-   gcloud auth application-default set-quota-project YOUR_PROJECT_ID
+   gcloud config set project 240676728422
+   gcloud auth application-default set-quota-project 240676728422
    ```
 
 4. **Enable Secret Manager API**:
@@ -95,11 +95,11 @@ openssl rand -base64 32 | gcloud secrets create platform-jwt-refresh-secret --da
 
 # External API keys
 echo -n "your-external-api-key" | gcloud secrets create platform-external-api-key --data-file=-
-echo -n "your-elevenlabs-api-key" | gcloud secrets create elevenlabs-api-key --data-file=-
+echo -n "" | gcloud secrets create elevenlabs-api-key --data-file=-
 
 # Docker registry credentials
-echo -n "your-docker-username" | gcloud secrets create docker-registry-username --data-file=-
-echo -n "your-docker-password" | gcloud secrets create docker-registry-password --data-file=-
+echo -n "" | gcloud secrets create docker-registry-username --data-file=-
+echo -n "" | gcloud secrets create docker-registry-password --data-file=-
 ```
 
 ### Using Google Cloud Console
