@@ -48,6 +48,7 @@ Generated on: [timestamp]
 Symbol: [TICKER]
 
 CURRENT MARKET DATA
+
 - Price: $[current price] ([24h change]%)
 - Market Cap: $[market cap]
 - 24h Volume: $[volume]
@@ -57,15 +58,18 @@ RECENT NEWS & DEVELOPMENTS
 [Bullet points of key news items with dates]
 
 MARKET SENTIMENT
+
 - Overall Sentiment: [Bullish/Bearish/Neutral]
 - Key Sentiment Drivers: [list main factors]
 
 TECHNICAL INDICATORS
+
 - Trend: [Uptrend/Downtrend/Sideways]
 - Key Levels: Support at $[price], Resistance at $[price]
 - Technical Outlook: [brief analysis]
 
 FUNDAMENTAL INSIGHTS
+
 - Project Status: [brief overview]
 - Recent Updates: [key developments]
 - Competitive Position: [market position]
@@ -75,6 +79,7 @@ SUMMARY & OUTLOOK
 ```
 
 **Best Practices:**
+
 - Always verify data from multiple sources when possible
 - Clearly distinguish between facts and analysis/opinions
 - Include source references for major claims
@@ -83,6 +88,7 @@ SUMMARY & OUTLOOK
 - Update technical levels based on current market conditions
 
 **Important Notes:**
+
 - Always clarify this is analysis, not financial advice
 - Include relevant risk warnings when appropriate
 - Focus on the specific coin requested, not general market conditions
